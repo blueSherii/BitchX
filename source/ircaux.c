@@ -1995,7 +1995,6 @@ char *BX_m_e3cat (char **one, const char *yes1, const char *yes2)
 }
 
 
-double strtod();
 extern int BX_check_val (char *sub)
 {
 	long sval;
@@ -2817,8 +2816,6 @@ u_char	*BX_strcpy_nocolorcodes (u_char *dest, const u_char *source)
 
 	return save;
 }
-
-char *crypt();
 
 char *BX_cryptit(const char *string) 
 {

@@ -584,13 +584,7 @@ static int glob3		(	Char *pathbuf,
 	char buf[MAXPATHLEN];
 	int nocase = 0;
 	
-	/*
-	 * The readdirfunc declaration can't be prototyped, because it is
-	 * assigned, below, to two functions which are prototyped in glob.h
-	 * and dirent.h as taking pointers to differently typed opaque
-	 * structures.
-	 */
-	struct dirent *(*readdirfunc)();
+	struct dirent *(*readdirfunc)(DIR *);
 
 	*pathend = EOS;
 	errno = 0;

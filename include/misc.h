@@ -130,7 +130,8 @@ ChannelList *	BX_prepare_command (int *, char *, int);
 	char		*do_nslookup (char *, char *, char *, char *, int, void (*func)(), char *);
 	void		set_nslookupfd(fd_set *);
 	long		print_nslookup(fd_set *);
-	void		auto_nslookup();
+	struct reslist;
+	void		auto_nslookup(struct reslist *);
 	int		freadln(FILE *, char *);
 
 
@@ -210,7 +211,7 @@ struct	reslist {
 	char	*channel;
 	char	*command;
 	int	server;
-	void	(*func)();
+	void	(*func)(struct reslist *);
 };
 
 struct	hostent	*ar_answer(char *, int, void (*func)(struct reslist *) );
