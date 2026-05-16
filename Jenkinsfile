@@ -56,9 +56,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Checking out branch: ${params.BRANCH}"
-                git url: 'git@github.com:blueSherii/BitchX.git',
-                    branch: "${params.BRANCH}",
-                    credentialsId: 'github-ssh-key'
+                sshagent(credentials: ['github-ssh-key']) {
+                    sh """
+                        git clone --depth=1 \
+                            --branch ${params.BRANCH} \
+                            git@github.com:blueSherii/BitchX.git .
+                    """
+                }
             }
         }
 
