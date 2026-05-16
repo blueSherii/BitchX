@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'agent-1' }
 
     parameters {
         string(
@@ -74,8 +74,9 @@ pipeline {
                         gcc make autoconf \
                         libncurses-dev \
                         libssl-dev \
-                        libxcrypt-dev \
                         dpkg-dev
+                    # libxcrypt-dev exists on Ubuntu 22.04+; on 20.04 crypt is in glibc
+                    apt-get install -y --no-install-recommends libxcrypt-dev 2>/dev/null || true
                 '''
             }
         }
